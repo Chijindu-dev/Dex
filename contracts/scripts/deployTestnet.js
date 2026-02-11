@@ -1,39 +1,35 @@
-// scripts/deployTestnet.cjs - Complete deployment for Sepolia testnet
+// scripts/deployTestnet.js - Complete deployment for Sepolia testnet
 const hre = require("hardhat");
-const ethers = require("ethers");
 
 async function main() {
   console.log("🚀 Deploying DEX to Sepolia Testnet...\n");
 
-  // Get signers using ethers provider
-  const provider = new ethers.JsonRpcProvider(process.env.SEPOLIA_RPC_URL);
-  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+  const [deployer] = await hre.ethers.getSigners();
+  console.log("📍 Deploying contracts with account:", deployer.address);
   
-  console.log("📍 Deploying contracts with account:", wallet.address);
-  
-  const balance = await provider.getBalance(wallet.address);
-  console.log("💰 Account balance:", ethers.formatEther(balance), "ETH\n");
+  const balance = await deployer.provider.getBalance(deployer.address);
+  console.log("💰 Account balance:", hre.ethers.utils.formatEther(balance), "ETH\n");
 
   // Step 1: Deploy Test Tokens
   console.log("=" .repeat(50));
   console.log("STEP 1: Deploying Test Tokens");
   console.log("=" .repeat(50));
 
-  const Token = await hre.ethers.getContractFactory("Token", wallet);
+  const Token = await hre.ethers.getContractFactory("Token");
 
-  const token1 = await Token.deploy("Test Token 1", "TEST1", ethers.parseEther("1000000"));
-  await token1.waitForDeployment();
-  const token1Address = await token1.getAddress();
+  const token1 = await Token.deploy("Test Token 1", "TEST1", hre.ethers.utils.parseEther("1000000"));
+  await token1.deployed();
+  const token1Address = token1.address;
   console.log("✅ TEST1 deployed to:", token1Address);
 
-  const token2 = await Token.deploy("Test Token 2", "TEST2", ethers.parseEther("1000000"));
-  await token2.waitForDeployment();
-  const token2Address = await token2.getAddress();
+  const token2 = await Token.deploy("Test Token 2", "TEST2", hre.ethers.utils.parseEther("1000000"));
+  await token2.deployed();
+  const token2Address = token2.address;
   console.log("✅ TEST2 deployed to:", token2Address);
 
-  const token3 = await Token.deploy("Test Token 3", "TEST3", ethers.parseEther("1000000"));
-  await token3.waitForDeployment();
-  const token3Address = await token3.getAddress();
+  const token3 = await Token.deploy("Test Token 3", "TEST3", hre.ethers.utils.parseEther("1000000"));
+  await token3.deployed();
+  const token3Address = token3.address;
   console.log("✅ TEST3 deployed to:", token3Address);
 
   // Step 2: Deploy DexFactory
@@ -41,10 +37,10 @@ async function main() {
   console.log("STEP 2: Deploying DexFactory");
   console.log("=" .repeat(50));
 
-  const DexFactory = await hre.ethers.getContractFactory("DexFactory", wallet);
-  const factory = await DexFactory.deploy(wallet.address);
-  await factory.waitForDeployment();
-  const factoryAddress = await factory.getAddress();
+  const DexFactory = await hre.ethers.getContractFactory("DexFactory");
+  const factory = await DexFactory.deploy(deployer.address);
+  await factory.deployed();
+  const factoryAddress = factory.address;
   console.log("✅ DexFactory deployed to:", factoryAddress);
 
   // Step 3: Deploy DexRouter
@@ -52,10 +48,10 @@ async function main() {
   console.log("STEP 3: Deploying DexRouter");
   console.log("=" .repeat(50));
 
-  const DexRouter = await hre.ethers.getContractFactory("DexRouter", wallet);
+  const DexRouter = await hre.ethers.getContractFactory("DexRouter");
   const router = await DexRouter.deploy(factoryAddress);
-  await router.waitForDeployment();
-  const routerAddress = await router.getAddress();
+  await router.deployed();
+  const routerAddress = router.address;
   console.log("✅ DexRouter deployed to:", routerAddress);
 
   // Step 4: Create test pairs and add liquidity
@@ -80,7 +76,7 @@ async function main() {
   console.log("STEP 5: Approving Tokens for Router");
   console.log("=" .repeat(50));
 
-  const approveAmount = ethers.parseEther("100000");
+  const approveAmount = hre.ethers.parseEther("100000");
   
   tx = await token1.approve(routerAddress, approveAmount);
   await tx.wait();
@@ -99,7 +95,7 @@ async function main() {
   console.log("STEP 6: Adding Initial Liquidity");
   console.log("=" .repeat(50));
 
-  const liquidityAmount = ethers.parseEther("1000");
+  const liquidityAmount = hre.ethers.parseEther("1000");
   const deadline = Math.floor(Date.now() / 1000) + 300;
 
   tx = await router.addLiquidity(
@@ -109,7 +105,7 @@ async function main() {
     liquidityAmount,
     0,
     0,
-    wallet.address,
+    deployer.address,
     deadline
   );
   await tx.wait();
@@ -122,7 +118,7 @@ async function main() {
     liquidityAmount,
     0,
     0,
-    wallet.address,
+    deployer.address,
     deadline
   );
   await tx.wait();
