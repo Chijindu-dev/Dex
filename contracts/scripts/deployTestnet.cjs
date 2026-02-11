@@ -1,34 +1,37 @@
 // scripts/deployTestnet.cjs - Complete deployment for Sepolia testnet
 const hre = require("hardhat");
-const { parseEther, formatEther } = require("ethers");
+const ethers = require("ethers");
 
 async function main() {
   console.log("🚀 Deploying DEX to Sepolia Testnet...\n");
 
-  const [deployer] = await hre.ethers.getSigners();
-  console.log("📍 Deploying contracts with account:", deployer.address);
+  // Get signers using ethers provider
+  const provider = new ethers.JsonRpcProvider(process.env.SEPOLIA_RPC_URL);
+  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
   
-  const balance = await deployer.provider.getBalance(deployer.address);
-  console.log("💰 Account balance:", formatEther(balance), "ETH\n");
+  console.log("📍 Deploying contracts with account:", wallet.address);
+  
+  const balance = await provider.getBalance(wallet.address);
+  console.log("💰 Account balance:", ethers.formatEther(balance), "ETH\n");
 
   // Step 1: Deploy Test Tokens
   console.log("=" .repeat(50));
   console.log("STEP 1: Deploying Test Tokens");
   console.log("=" .repeat(50));
 
-  const Token = await hre.ethers.getContractFactory("Token");
+  const Token = await hre.ethers.getContractFactory("Token", wallet);
 
-  const token1 = await Token.deploy("Test Token 1", "TEST1", parseEther("1000000"));
+  const token1 = await Token.deploy("Test Token 1", "TEST1", ethers.parseEther("1000000"));
   await token1.waitForDeployment();
   const token1Address = await token1.getAddress();
   console.log("✅ TEST1 deployed to:", token1Address);
 
-  const token2 = await Token.deploy("Test Token 2", "TEST2", parseEther("1000000"));
+  const token2 = await Token.deploy("Test Token 2", "TEST2", ethers.parseEther("1000000"));
   await token2.waitForDeployment();
   const token2Address = await token2.getAddress();
   console.log("✅ TEST2 deployed to:", token2Address);
 
-  const token3 = await Token.deploy("Test Token 3", "TEST3", parseEther("1000000"));
+  const token3 = await Token.deploy("Test Token 3", "TEST3", ethers.parseEther("1000000"));
   await token3.waitForDeployment();
   const token3Address = await token3.getAddress();
   console.log("✅ TEST3 deployed to:", token3Address);
@@ -38,8 +41,8 @@ async function main() {
   console.log("STEP 2: Deploying DexFactory");
   console.log("=" .repeat(50));
 
-  const DexFactory = await hre.ethers.getContractFactory("DexFactory");
-  const factory = await DexFactory.deploy(deployer.address);
+  const DexFactory = await hre.ethers.getContractFactory("DexFactory", wallet);
+  const factory = await DexFactory.deploy(wallet.address);
   await factory.waitForDeployment();
   const factoryAddress = await factory.getAddress();
   console.log("✅ DexFactory deployed to:", factoryAddress);
@@ -49,7 +52,7 @@ async function main() {
   console.log("STEP 3: Deploying DexRouter");
   console.log("=" .repeat(50));
 
-  const DexRouter = await hre.ethers.getContractFactory("DexRouter");
+  const DexRouter = await hre.ethers.getContractFactory("DexRouter", wallet);
   const router = await DexRouter.deploy(factoryAddress);
   await router.waitForDeployment();
   const routerAddress = await router.getAddress();
