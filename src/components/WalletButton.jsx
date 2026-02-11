@@ -7,12 +7,16 @@ export function WalletButton() {
   const { account, balance, isConnecting, connectWallet, disconnect } = useContext(Web3Context);
 
   if (account) {
+    const accountDisplay = account && typeof account === 'string' 
+      ? `${account.substring(0, 6)}...${account.substring(account.length - 4)}`
+      : 'Connected';
+    
     return (
       <div className="wallet-button connected">
         <div style={{ textAlign: 'left' }}>
           <div style={{ fontSize: '0.75rem', opacity: 0.7 }}>Connected</div>
           <div className="wallet-address">
-            {account.substring(0, 6)}...{account.substring(account.length - 4)}
+            {accountDisplay}
           </div>
         </div>
         <button 

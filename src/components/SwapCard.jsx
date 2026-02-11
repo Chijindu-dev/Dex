@@ -69,6 +69,7 @@ export function SwapCard({ routerAddress, factoryAddress }) {
   const handleSwap = async () => {
     if (!account || !signer || !tokenIn || !tokenOut || !amountIn) {
       alert('Please connect wallet and select tokens');
+      console.log('Validation failed:', { account, signer: !!signer, tokenIn, tokenOut, amountIn });
       return;
     }
 
@@ -79,6 +80,9 @@ export function SwapCard({ routerAddress, factoryAddress }) {
 
     try {
       setLoading(true);
+      console.log('Starting swap...');
+      console.log('Signer:', signer);
+      console.log('Account:', account);
 
       // Approve token spending
       const tokenContract = new Contract(tokenIn.address, ERC20_ABI, signer);
@@ -86,6 +90,7 @@ export function SwapCard({ routerAddress, factoryAddress }) {
       
       console.log('Approving token spend...');
       const approveTx = await tokenContract.approve(routerAddress, inputAmount);
+      console.log('Approve TX:', approveTx);
       await approveTx.wait();
       console.log('Approval confirmed');
 
@@ -96,7 +101,7 @@ export function SwapCard({ routerAddress, factoryAddress }) {
       const deadline = Math.floor(Date.now() / 1000) + 300;
 
       const path = [tokenIn.address, tokenOut.address];
-      console.log('Executing swap...');
+      console.log('Executing swap...', { inputAmount, minOutput, path, account, deadline });
       const swapTx = await router.swapExactTokensForTokens(
         inputAmount,
         minOutput,
@@ -105,16 +110,24 @@ export function SwapCard({ routerAddress, factoryAddress }) {
         deadline
       );
 
+      console.log('Swap TX:', swapTx);
+      
+      // Wait for the transaction receipt
       const receipt = await swapTx.wait();
-      console.log('Swap successful:', receipt.transactionHash);
-      alert('Swap successful! TX: ' + receipt.transactionHash.substring(0, 10) + '...');
+      console.log('Swap successful:', receipt);
+      
+      if (receipt && receipt.transactionHash) {
+        alert('Swap successful! TX: ' + receipt.transactionHash.substring(0, 10) + '...');
+      } else {
+        alert('Swap completed!');
+      }
 
       // Reset form
       setAmountIn('');
       setAmountOut('0');
     } catch (error) {
       console.error('Swap error:', error);
-      alert('Swap failed: ' + error.message);
+      alert('Swap failed: ' + (error?.message || error));
     } finally {
       setLoading(false);
     }

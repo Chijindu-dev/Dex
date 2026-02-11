@@ -2,13 +2,26 @@
 import React, { useState, useCallback } from 'react';
 import './TokenSelector.css';
 
-// These are example token addresses. Replace with addresses from your deployed network.
-// For Sepolia testnet, you need to deploy ERC20 tokens first or use existing test tokens.
+// Deployed tokens on Tempo Testnet
 const COMMON_TOKENS = [
-  { symbol: 'TOKEN1', address: '0x0000000000000000000000000000000000000001', decimals: 18 },
-  { symbol: 'TOKEN2', address: '0x0000000000000000000000000000000000000002', decimals: 18 },
-  { symbol: 'TOKEN3', address: '0x0000000000000000000000000000000000000003', decimals: 6 },
-  { symbol: 'TOKEN4', address: '0x0000000000000000000000000000000000000004', decimals: 6 },
+  { 
+    symbol: 'SWIFT', 
+    name: 'Swift Exchange Token',
+    address: '0x56005bdCd754fC6742906A6040aE719A43622651', 
+    decimals: 18
+  },
+  { 
+    symbol: 'FLUX', 
+    name: 'Flux Liquidity Token',
+    address: '0xa12ecC1228739e9DbAEf01257968eac0BCbde5DB', 
+    decimals: 18
+  },
+  { 
+    symbol: 'NEXUS', 
+    name: 'Nexus Hub Token',
+    address: '0xfDefaF0f9985F092899Fe5278c8b32010b8F3BbC', 
+    decimals: 18
+  },
 ];
 
 export function TokenSelector({ value, onChange, excludeToken }) {
@@ -30,6 +43,10 @@ export function TokenSelector({ value, onChange, excludeToken }) {
     setSearchTerm('');
   }, [onChange]);
 
+  const handleBackdropClick = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
   return (
     <div className="token-selector">
       <button
@@ -41,7 +58,9 @@ export function TokenSelector({ value, onChange, excludeToken }) {
       </button>
 
       {isOpen && (
-        <div className="token-dropdown">
+        <>
+          <div className="token-backdrop" onClick={handleBackdropClick}></div>
+          <div className="token-dropdown">
           <input
             type="text"
             placeholder="Search by symbol or address..."
@@ -58,9 +77,16 @@ export function TokenSelector({ value, onChange, excludeToken }) {
                   className="token-item"
                   onClick={() => handleSelect(token)}
                 >
-                  <span className="token-symbol">{token.symbol}</span>
+                  <div className="token-info">
+                    <div className="token-header">
+                      <span className="token-symbol">{token.symbol}</span>
+                    </div>
+                    <span className="token-name">{token.name}</span>
+                  </div>
                   <span className="token-address">
-                    {token.address.substring(0, 6)}...{token.address.substring(token.address.length - 4)}
+                    {token.address && typeof token.address === 'string'
+                      ? `${token.address.substring(0, 6)}...${token.address.substring(token.address.length - 4)}`
+                      : 'Invalid'}
                   </span>
                 </button>
               ))
@@ -68,7 +94,8 @@ export function TokenSelector({ value, onChange, excludeToken }) {
               <div className="no-tokens">No tokens found</div>
             )}
           </div>
-        </div>
+          </div>
+        </>
       )}
     </div>
   );

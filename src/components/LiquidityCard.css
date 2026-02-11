@@ -1,103 +1,123 @@
-/* LiquidityCard.css - Modern Liquidity Management Interface */
+/* LiquidityCard.css - Premium Liquidity Management Interface */
 
 .liquidity-card {
-  background-color: var(--bg-secondary);
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
   border: 1px solid var(--border-color);
-  border-radius: 20px;
-  padding: 1.5rem;
+  border-radius: 24px;
+  padding: 2rem;
   width: 100%;
   max-width: 500px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
 }
 
 .liquidity-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   gap: 1rem;
 }
 
 .liquidity-header h2 {
-  font-size: 1.3rem;
-  font-weight: 600;
+  font-size: 1.75rem;
+  font-weight: 700;
   color: var(--text-primary);
   margin: 0;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .mode-toggle {
   display: flex;
-  gap: 0;
+  gap: 0.5rem;
   background: var(--bg-tertiary);
-  padding: 4px;
-  border-radius: 8px;
+  padding: 0.5rem;
+  border-radius: 12px;
   border: 1px solid var(--border-color);
 }
 
 .mode-toggle button {
-  padding: 8px 16px;
+  padding: 0.75rem 1.25rem;
   border: none;
   background: transparent;
   cursor: pointer;
-  border-radius: 6px;
-  font-weight: 600;
-  color: var(--text-tertiary);
+  border-radius: 8px;
+  font-weight: 700;
+  color: var(--text-secondary);
   transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.mode-toggle button:hover {
+  color: var(--text-primary);
+  background-color: rgba(99, 102, 241, 0.1);
 }
 
 .mode-toggle button.active {
-  background: var(--bg-secondary);
-  color: #667eea;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
 .liquidity-inputs {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1.5rem;
 }
 
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.75rem;
 }
 
 .input-group label {
-  font-size: 12px;
-  font-weight: 600;
-  color: #999;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-secondary);
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .input-wrapper {
   display: flex;
-  gap: 12px;
+  gap: 1rem;
   align-items: center;
 }
 
 .token-input {
   flex: 1;
-  padding: 12px;
-  border: 2px solid #e0e0e0;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, var(--input-bg), var(--bg-tertiary));
+  border: 1px solid var(--border-color);
   border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 700;
   box-sizing: border-box;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
 }
 
 .token-input::placeholder {
-  color: #ccc;
+  color: var(--text-tertiary);
+  opacity: 0.5;
 }
 
 .token-input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
 }
 
 .balance-info {
-  font-size: 12px;
-  color: #999;
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
   padding: 0 4px;
 }
 
@@ -136,4 +156,112 @@
   padding: 40px 20px;
   text-align: center;
   color: #999;
+}
+
+/* Responsive Design */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  .liquidity-card {
+    padding: 1.5rem;
+    border-radius: 20px;
+  }
+
+  .liquidity-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .liquidity-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .mode-toggle {
+    padding: 0.4rem;
+  }
+
+  .mode-toggle button {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .input-wrapper {
+    gap: 0.9rem;
+  }
+
+  .token-input {
+    padding: 1rem;
+    font-size: 1.1rem;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .liquidity-card {
+    padding: 1.25rem;
+    border-radius: 16px;
+    max-width: 100%;
+  }
+
+  .liquidity-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .liquidity-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .mode-toggle {
+    gap: 0.25rem;
+    padding: 0.35rem;
+  }
+
+  .mode-toggle button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    border-radius: 6px;
+  }
+
+  .liquidity-inputs {
+    gap: 1.2rem;
+  }
+
+  .input-group {
+    gap: 0.5rem;
+  }
+
+  .input-group label {
+    font-size: 0.8rem;
+  }
+
+  .input-wrapper {
+    gap: 0.75rem;
+    flex-direction: column;
+  }
+
+  .token-input {
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    width: 100%;
+  }
+
+  .balance-info {
+    font-size: 0.75rem;
+  }
+
+  .plus-sign {
+    font-size: 18px;
+    margin: 0.75rem 0;
+  }
+
+  .liquidity-btn {
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+  }
+
+  .remove-liquidity {
+    padding: 2rem 1rem;
+  }
 }

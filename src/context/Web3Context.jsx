@@ -49,7 +49,7 @@ export function Web3Provider({ children }) {
       console.log('Accounts:', accounts);
       
       const newProvider = new ethers.BrowserProvider(window.ethereum);
-      const newSigner = newProvider.getSigner();
+      const newSigner = await newProvider.getSigner(accounts[0]);
       const network = await newProvider.getNetwork();
       const userBalance = await newProvider.getBalance(accounts[0]);
 
