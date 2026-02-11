@@ -1,0 +1,108 @@
+/* WalletButton.css - Modern Wallet Connection Button */
+
+.wallet-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1rem;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.wallet-button:hover:not(:disabled) {
+  background-color: var(--bg-surface);
+  border-color: var(--accent-primary);
+  transform: translateY(-1px);
+}
+
+.wallet-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.wallet-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.wallet-button.connected {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-hover));
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+}
+
+.wallet-button.connected:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31, 184, 129, 0.3);
+}
+
+.wallet-icon {
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+
+.wallet-address {
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.balance-display {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.wallet-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.address {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.disconnect-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+
+.disconnect-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.connect-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.connect-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.connect-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

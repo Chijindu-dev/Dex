@@ -1,0 +1,356 @@
+/* SwapCard.css - Modern Swap Interface */
+
+.swap-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.swap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.swap-header h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.settings {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-tertiary);
+  border-radius: 8px;
+}
+
+.settings label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.settings input {
+  width: 50px;
+  padding: 0.3rem 0.5rem;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-size: 0.8rem;
+}
+
+/* Tab Navigation */
+.swap-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.swap-tab {
+  flex: 1;
+  padding: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.swap-tab:hover {
+  color: var(--text-primary);
+}
+
+.swap-tab.active {
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
+}
+
+/* Input Groups */
+.swap-input-group {
+  margin-bottom: 1rem;
+}
+
+.swap-input-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.balance-display {
+  color: var(--text-tertiary);
+  font-size: 0.8rem;
+}
+
+.swap-input-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.2s ease;
+}
+
+.swap-input-container:focus-within {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(31, 184, 129, 0.1);
+}
+
+.swap-input-container input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  outline: none;
+  width: 100%;
+}
+
+.swap-input-container input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.token-selector-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.token-selector-btn:hover {
+  background-color: var(--bg-surface);
+  border-color: var(--accent-primary);
+}
+
+.token-symbol {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.token-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* Swap Direction Button */
+.swap-direction-btn {
+  display: flex;
+  justify-content: center;
+  margin: -1rem 0 -1rem 0;
+  position: relative;
+  z-index: 10;
+}
+
+.swap-direction-btn button {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  color: var(--accent-primary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.swap-direction-btn button:hover {
+  background-color: var(--bg-tertiary);
+  border-color: var(--accent-primary);
+  transform: rotate(180deg);
+}
+
+/* Price Info */
+.price-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-tertiary);
+  border-radius: 8px;
+  margin: 1rem 0;
+  font-size: 0.85rem;
+}
+
+.price-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.price-info-label {
+  color: var(--text-tertiary);
+}
+
+.price-info-value {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.price-impact {
+  color: var(--warning);
+}
+
+.price-impact.high {
+  color: var(--error);
+}
+
+/* Connect Wallet Button */
+.connect-wallet-btn {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-hover));
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+}
+
+.connect-wallet-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(31, 184, 129, 0.3);
+}
+
+.connect-wallet-btn:active {
+  transform: translateY(0);
+}
+
+/* Swap Button */
+.swap-btn {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-hover));
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+}
+
+.swap-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(31, 184, 129, 0.3);
+}
+
+.swap-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.swap-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.swap-btn.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .swap-card {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .swap-header {
+    margin-bottom: 1rem;
+  }
+
+  .swap-input-container {
+    padding: 0.75rem;
+  }
+
+  .swap-input-container input {
+    font-size: 1.2rem;
+  }
+
+  .token-selector-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .token-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .price-info {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .price-info-item {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

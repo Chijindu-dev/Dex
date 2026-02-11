@@ -1,0 +1,261 @@
+/* App.css - Modern DEX UI with Light/Dark Mode */
+
+:root[data-theme='dark'] {
+  --bg-primary: #0f0e11;
+  --bg-secondary: #131a24;
+  --bg-tertiary: #1a1f2e;
+  --bg-surface: #212736;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #b0b9c1;
+  --text-tertiary: #7f8b98;
+  
+  --border-color: #2d3142;
+  --input-bg: #1a1f2e;
+  
+  --accent-primary: #1fb881;
+  --accent-hover: #26d07c;
+  
+  --error: #f6465d;
+  --warning: #ffa726;
+  --success: #26d07c;
+}
+
+:root[data-theme='light'] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f6fa;
+  --bg-tertiary: #eff1f5;
+  --bg-surface: #eef0f5;
+  
+  --text-primary: #0d0d0d;
+  --text-secondary: #565a69;
+  --text-tertiary: #888d97;
+  
+  --border-color: #d9dadf;
+  --input-bg: #f5f6fa;
+  
+  --accent-primary: #0d3a21;
+  --accent-hover: #0f4a2c;
+  
+  --error: #f6465d;
+  --warning: #ffa726;
+  --success: #07a368;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  gap: 2rem;
+}
+
+.header-left {
+  flex-shrink: 0;
+}
+
+.app-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+/* Navigation */
+.app-nav {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-link {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  position: relative;
+  border-radius: 8px;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+}
+
+.nav-link.active {
+  color: var(--accent-primary);
+  background-color: var(--bg-tertiary);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--accent-primary);
+  border-radius: 3px 3px 0 0;
+}
+
+/* Header Right */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.theme-toggle {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--bg-surface);
+  border-color: var(--accent-primary);
+}
+
+/* Main Content */
+.app-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.feature-placeholder {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 600px;
+}
+
+.feature-placeholder h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.feature-placeholder p {
+  font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .app-header {
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+  }
+
+  .app-nav {
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .header-left,
+  .header-right {
+    width: 100%;
+  }
+
+  .app-logo {
+    font-size: 1.3rem;
+  }
+
+  .app-nav {
+    width: 100%;
+    gap: 0.25rem;
+    justify-content: space-around;
+  }
+
+  .nav-link {
+    flex: 1;
+    padding: 0.6rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .header-right {
+    justify-content: space-between;
+  }
+
+  .app-main {
+    padding: 1rem;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+

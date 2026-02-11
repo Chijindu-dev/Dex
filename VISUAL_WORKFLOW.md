@@ -1,0 +1,481 @@
+# Visual Workflow & User Guide
+
+## 🎯 User Journeys
+
+### Journey 1: Swap Tokens
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  User Opens DEX Frontend                               │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  🔷 Click "Connect Wallet"                              │
+│     MetaMask Popup Appears                             │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  ✅ Wallet Connected                                    │
+│     Balance: 1000 TKNA, 500 TKNB                       │
+│     Network: Sepolia                                    │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  📊 Go to SWAP Tab                                      │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  1️⃣  Enter Amount: 10 TKNA                              │
+│     (Remaining: 990 TKNA)                             │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  2️⃣  System Calculates Output:                          │
+│     Input:  10 TKNA                                    │
+│     Output: 9.06 TKNB (after 0.3% fee)               │
+│     Price Impact: 9.37%                                │
+│     Min Received: 9.02 TKNB (0.5% slippage)          │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  3️⃣  Click "Swap" Button                                │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  🔐 MetaMask Popup: Confirm Transaction                │
+│     From: 0x... (User)                                 │
+│     To: Router (0x...)                                 │
+│     Gas: ~1.8M                                         │
+│     Fee: ~0.05 ETH                                     │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  ⏳ Waiting for confirmation...                         │
+│     Tx: 0xabc123...                                    │
+│     Status: Pending (30 seconds)                        │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  ✅ Swap Successful!                                    │
+│     You gave: 10 TKNA                                  │
+│     You got: 9.06 TKNB                                 │
+│     New Balance: 990 TKNA, 509.06 TKNB                 │
+│     View on Explorer: https://sepolia.etherscan.io... │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+### Journey 2: Add Liquidity
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  🌊 Go to LIQUIDITY Tab                                 │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  Select Mode: ADD LIQUIDITY ✨                          │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  Select Token A                                         │
+│  ┌─────────────────────────────────────┐               │
+│  │ Token Selector Dropdown             │               │
+│  │ ┌─────────────────────────────────┐ │               │
+│  │ │ TKNA - Token A               ✓  │ │               │
+│  │ │ TKNB - Token B                  │ │               │
+│  │ │ USDC - USD Coin                 │ │               │
+│  │ └─────────────────────────────────┘ │               │
+│  └─────────────────────────────────────┘               │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  Enter Amount A: 100 TKNA                              │
+│  (Balance: 990 TKNA)                                   │
+│                                                         │
+│  System Shows:                                          │
+│  Amount B Needed: 100 TKNB (1:1 ratio for new pool)   │
+│  (Balance: 509.06 TKNB) ✅                             │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  💧 LP Tokens You'll Receive:                           │
+│     sqrt(100 * 100) - 1000 = ~9,900 LP                │
+│     Pool Share: 100%                                   │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  Click "Add Liquidity"                                 │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  Step 1: Approve Token A                               │
+│  🔐 MetaMask: Approve 100 TKNA for Router            │
+│  ✅ Approved                                            │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  Step 2: Approve Token B                               │
+│  🔐 MetaMask: Approve 100 TKNB for Router            │
+│  ✅ Approved                                            │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  Step 3: Execute Mint                                  │
+│  🔐 MetaMask: Add Liquidity Transaction               │
+│  ⏳ Waiting... 45 seconds                              │
+└────────────────────┬────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  🎉 Liquidity Added Successfully!                       │
+│                                                         │
+│     Tokens Deposited:                                   │
+│     • 100 TKNA                                         │
+│     • 100 TKNB                                         │
+│                                                         │
+│     LP Tokens Received: 9,900 LP                       │
+│     Pool Share: 100%                                   │
+│     (This decreases when others add liquidity)        │
+│                                                         │
+│     New Balances:                                       │
+│     • TKNA: 890 (was 990)                             │
+│     • TKNB: 409.06 (was 509.06)                       │
+│     • LP: 9,900 (was 0)                               │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📊 State Visualization
+
+### Swap Flow
+
+```
+User Input          Router Logic           Pair Contract        Result
+─────────           ────────────           ─────────────        ──────
+
+User A: 10 TKNA     Path: TKNA → TKNB      Current Reserves:    A sends 10
+                    ├─ getAmountOut()       TKNA: 100           TKNB to U
+                    │  (100*997*TKNB) /     TKNB: 100           receives 
+                    │  (100*1000 + 9970)    k = 10,000          9.06 TKNB
+                    ├─ minOutput check      
+                    │  9.06 > 9.02 ✓       Validates k:         k remains
+                    └─ Transfer to Pair    (110*1000-99700)     maintained
+                       Execute Swap        * (90.909*1000-29700) 
+                                          ≥ 10,000 * 1,000,000 ✓
+```
+
+### Liquidity State
+
+```
+Before Add:
+┌──────────────┬──────────────┬──────────────┐
+│   TKNA       │   TKNB       │   LP Tokens  │
+│   100        │   100        │   9,900      │ (Pool State)
+│              │              │              │
+│   0          │   0          │   0          │ (User State)
+└──────────────┴──────────────┴──────────────┘
+
+After User Adds 100 TKNA + 100 TKNB:
+┌──────────────┬──────────────┬──────────────┐
+│   TKNA       │   TKNB       │   LP Tokens  │
+│   200        │   200        │   19,800     │ (Pool State)
+│              │              │              │
+│   890        │   409.06     │   9,900      │ (User State)
+└──────────────┴──────────────┴──────────────┘
+User's Pool Share: 9,900 / 19,800 = 50%
+```
+
+---
+
+## 🔄 Transaction Lifecycle
+
+```
+User Initiates Transaction
+         ▼
+┌─────────────────────────────────┐
+│ 1. Parameter Validation        │
+│    • Verify amounts > 0        │
+│    • Check deadline >= now     │
+│    • Validate token addresses  │
+└────────────────┬────────────────┘
+                 ▼
+┌─────────────────────────────────┐
+│ 2. Approval Check               │
+│    • Does router have allowance?│
+│    • If NO → Show approve modal │
+│    • If YES → Proceed           │
+└────────────────┬────────────────┘
+                 ▼
+┌─────────────────────────────────┐
+│ 3. Build Transaction            │
+│    • Encode function call       │
+│    • Estimate gas               │
+│    • Calculate fees             │
+└────────────────┬────────────────┘
+                 ▼
+┌─────────────────────────────────┐
+│ 4. Send to Wallet               │
+│    MetaMask popup shows:        │
+│    • From address               │
+│    • To address (router)        │
+│    • Value (0 for swaps)        │
+│    • Gas estimate               │
+│    • Data (encoded function)    │
+└────────────────┬────────────────┘
+                 ▼
+┌─────────────────────────────────┐
+│ 5. User Signs Transaction       │
+│    • MetaMask signing UI        │
+│    • User clicks "Confirm"      │
+│    • Signed data returned       │
+└────────────────┬────────────────┘
+                 ▼
+┌─────────────────────────────────┐
+│ 6. Broadcast to Network         │
+│    • Sent to mempool            │
+│    • Pending state              │
+│    • UI shows "Pending..."      │
+└────────────────┬────────────────┘
+                 ▼
+┌─────────────────────────────────┐
+│ 7. Block Inclusion              │
+│    • Miner picks up Tx          │
+│    • Executes in block          │
+│    • TX hash confirmed          │
+│    • 1-2 minute wait            │
+└────────────────┬────────────────┘
+                 ▼
+┌─────────────────────────────────┐
+│ 8. Validation & Events          │
+│    • Smart contract executes    │
+│    • Events emitted             │
+│    • State updated              │
+│    • Receipt generated          │
+└────────────────┬────────────────┘
+                 ▼
+┌─────────────────────────────────┐
+│ 9. Frontend Update              │
+│    • Fetch new balances         │
+│    • Update UI                  │
+│    • Show success notification  │
+│    • Provide Explorer link      │
+└────────────────┬────────────────┘
+                 ▼
+Transaction Complete! ✅
+```
+
+---
+
+## 💾 Contract State After Operations
+
+### Initial State
+```
+Factory:
+  ├─ feeTo: 0x0000... (not set)
+  ├─ getPair[TKNA][TKNB]: 0x0000... (no pair)
+  └─ allPairs: []
+
+Wallets:
+  ├─ User: 1000 TKNA, 1000 TKNB, 0 LP
+  └─ Deployer: 1000000 TKNA, 1000000 TKNB
+```
+
+### After Create Pair
+```
+Factory:
+  ├─ getPair[TKNA][TKNB]: 0xPAIR123
+  ├─ getPair[TKNB][TKNA]: 0xPAIR123
+  └─ allPairs: [0xPAIR123]
+
+Pair(0xPAIR123):
+  ├─ token0: 0xTKNA
+  ├─ token1: 0xTKNB
+  ├─ reserve0: 0
+  ├─ reserve1: 0
+  └─ LP supply: 0
+```
+
+### After Add Liquidity (100 TKNA + 100 TKNB)
+```
+Pair(0xPAIR123):
+  ├─ reserve0: 100
+  ├─ reserve1: 100
+  ├─ LP supply: 9,900
+  ├─ k = 100 * 100 = 10,000
+  └─ LP balances: User: 9,900
+
+Wallets:
+  └─ User: 900 TKNA, 900 TKNB, 9,900 LP
+```
+
+### After Swap (10 TKNA → TKNB)
+```
+Pair(0xPAIR123):
+  ├─ reserve0: 110
+  ├─ reserve1: 90.909
+  ├─ k = 110 * 90.909 = 10,000
+  └─ LP balances: unchanged
+
+Wallets:
+  └─ User: 890 TKNA, 909.06 TKNB, 9,900 LP
+```
+
+---
+
+## ⚡ Gas Costs Breakdown
+
+```
+┌────────────────────────────────────────────┐
+│          Gas Cost Estimates                │
+├────────────────────────────────────────────┤
+│ Operation          Gas (avg)    USD @20gwei│
+├────────────────────────────────────────────┤
+│ Create Pair        2,500,000    $0.50      │
+│ Add Liquidity      3,500,000    $0.70      │
+│ Swap Token         1,800,000    $0.36      │
+│ Remove Liquidity   1,000,000    $0.20      │
+│ Transfer Token       65,000     $0.013     │
+│ Approve Token      110,000      $0.022     │
+└────────────────────────────────────────────┘
+
+Total for Add Liquidity + Swap + Remove:
+~6.3M gas = ~$1.26 (at 20 gwei)
+```
+
+---
+
+## 🎨 UI Component Tree
+
+```
+App
+├── Header
+│   ├── Title & Subtitle
+│   └── WalletButton
+│       ├── ConnectButton (if not connected)
+│       └── WalletInfo + DisconnectButton (if connected)
+│
+├── Navigation
+│   ├── SwapTab
+│   ├── LiquidityTab
+│   └── PoolsTab
+│
+├── Content Area (Conditional)
+│   ├── SwapCard (if Swap selected)
+│   │   ├── Settings (Slippage)
+│   │   ├── InputGroup
+│   │   │   ├── Input (amount)
+│   │   │   └── TokenSelector
+│   │   ├── SwapButton (↔)
+│   │   ├── OutputGroup
+│   │   │   ├── Input (readonly)
+│   │   │   └── TokenSelector
+│   │   ├── SwapDetails
+│   │   │   ├── Price Impact
+│   │   │   └── Min Received
+│   │   └── ExecuteButton
+│   │
+│   ├── LiquidityCard (if Liquidity selected)
+│   │   ├── ModeToggle (Add/Remove)
+│   │   ├── InputGroup A
+│   │   ├── Plus Icon
+│   │   ├── InputGroup B
+│   │   └── ExecuteButton
+│   │
+│   └── PoolsContainer (if Pools selected)
+│       └── Coming Soon
+│
+└── Footer
+    └── Disclaimer
+```
+
+---
+
+## 📈 Price Movement Simulation
+
+```
+Time    TKNA    TKNB    k         Price (TKNA→TKNB)
+──────  ──────  ──────  ────────  ──────────────────
+0       100     100     10,000    1.0
+5min    110     90.9    10,000    0.83 (-17%)
+10min   121     82.6    10,000    0.68 (-32%)
+15min   133.1   75.2    10,000    0.56 (-44%)
+
+Notice: As one asset increases, the other must decrease
+        to maintain k = constant
+```
+
+---
+
+## 🔐 Security Check Sequence
+
+```
+User submits swap transaction
+              ▼
+    ┌──────────────────────┐
+    │ Check Deadline Valid │
+    │  (< 5 min from now)  │
+    └────────┬─────────────┘
+             │ ✅
+             ▼
+    ┌──────────────────────┐
+    │ Validate Path Length │
+    │  (>= 2 tokens)       │
+    └────────┬─────────────┘
+             │ ✅
+             ▼
+    ┌──────────────────────┐
+    │ Check Sufficient LP  │
+    │  (Reserves >= output)│
+    └────────┬─────────────┘
+             │ ✅
+             ▼
+    ┌──────────────────────┐
+    │ Verify Constant K    │
+    │  (x*y >= k after)    │
+    └────────┬─────────────┘
+             │ ✅
+             ▼
+    ┌──────────────────────┐
+    │ Check Recipient      │
+    │  (not token address) │
+    └────────┬─────────────┘
+             │ ✅
+             ▼
+    ┌──────────────────────┐
+    │ Execute Swap & Emit  │
+    │  Event               │
+    └────────┬─────────────┘
+             │ ✅
+             ▼
+    Transfer Complete! ✅
+```
+
+---
+
+## 📱 Responsive Design
+
+```
+Desktop (>1024px)          Tablet (768px-1024px)      Mobile (<768px)
+─────────────────────      ──────────────────────     ──────────────
+┌──────────────────────┐   ┌──────────────────────┐   ┌──────────┐
+│  DEX AMM             │   │  DEX AMM             │   │ DEX AMM  │
+│  [Wallet] [Settings] │   │  [Wallet] [Settings] │   │ [Wallet] │
+├──────────────────────┤   ├──────────────────────┤   ├──────────┤
+│ Swap | Liquidity |...│   │ Swap | Liquidity |...│   │ Swap     │
+│                      │   │                      │   │ Liquid.  │
+├──────────────────────┤   ├──────────────────────┤   ├──────────┤
+│ ┌────────────────┐   │   │ ┌────────────────┐   │   │ ┌──────┐ │
+│ │   Swap Card    │   │   │ │  Swap Card     │   │   │ │Swap  │ │
+│ │                │   │   │ │                │   │   │ │Card  │ │
+│ │ 500px wide     │   │   │ │  400px wide    │   │   │ │100%  │ │
+│ │                │   │   │ │                │   │   │ │ wide │ │
+│ └────────────────┘   │   │ └────────────────┘   │   │ └──────┘ │
+│                      │   │                      │   │          │
+│                      │   │                      │   │          │
+└──────────────────────┘   └──────────────────────┘   └──────────┘
+```
+
+---
+
+This visual guide helps understand the complete user experience and technical flow of the AMM DEX!
