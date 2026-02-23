@@ -1,0 +1,600 @@
+/* BridgeCard.css - Professional Bridge Interface */
+
+.bridge-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.bridge-card {
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.bridge-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.5px;
+}
+
+.bridge-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-tertiary);
+  margin: 0 0 2rem 0;
+}
+
+.bridge-section {
+  margin-bottom: 1.5rem;
+}
+
+.bridge-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.token-selection-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.token-selected-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--bg-tertiary);
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.selected-symbol {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--accent-primary);
+}
+
+.selected-balance {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+.amount-input-group {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.bridge-input {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1rem;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+.bridge-input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.bridge-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.max-button {
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  border: none;
+  border-radius: 12px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.max-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+.max-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.bridge-select {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1rem;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.bridge-select:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.bridge-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.bridge-select option {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+/* Fee Display */
+.fee-display {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.fee-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.fee-row:not(:last-child) {
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.75rem;
+}
+
+.fee-row.total {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.fee-value {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.fee-value.highlight {
+  color: var(--accent-primary);
+}
+
+/* Messages */
+.bridge-message {
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.bridge-message.error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.bridge-message.success {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+/* Bridge Button */
+.bridge-button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  border: none;
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  margin-bottom: 1rem;
+}
+
+.bridge-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+}
+
+.bridge-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.bridge-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* History Button */
+.history-toggle-button {
+  width: 100%;
+  padding: 0.75rem;
+  background: transparent;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.history-toggle-button:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: rgba(99, 102, 241, 0.05);
+}
+
+/* Bridge History */
+.bridge-history {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--border-color);
+}
+
+.bridge-history h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.history-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.history-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 2px;
+}
+
+.history-item {
+  padding: 1rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.history-item:hover {
+  border-color: var(--accent-primary);
+  background: rgba(99, 102, 241, 0.02);
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.history-token {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.history-status {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.history-status.completed {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.history-status.pending {
+  background: rgba(249, 115, 22, 0.15);
+  color: #f97316;
+}
+
+.history-details {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+.history-details p {
+  margin: 0.3rem 0;
+}
+
+.history-details strong {
+  color: var(--text-secondary);
+}
+
+.no-history {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  .bridge-container {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .bridge-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .bridge-title {
+    font-size: 1.5rem;
+  }
+
+  .bridge-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .bridge-section {
+    margin-bottom: 1.25rem;
+  }
+
+  .bridge-input,
+  .bridge-select {
+    padding: 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .max-button {
+    padding: 0.9rem 1.25rem;
+    font-size: 0.85rem;
+  }
+
+  .fee-display {
+    padding: 0.85rem;
+  }
+
+  .fee-row {
+    font-size: 0.85rem;
+    padding: 0.4rem 0;
+  }
+
+  .bridge-button {
+    padding: 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .history-toggle-button {
+    padding: 0.65rem;
+    font-size: 0.85rem;
+  }
+
+  .bridge-history h3 {
+    font-size: 1rem;
+  }
+
+  .history-token {
+    font-size: 0.9rem;
+  }
+
+  .history-status {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.65rem;
+  }
+
+  .history-details {
+    font-size: 0.8rem;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .bridge-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .bridge-card {
+    padding: 1.25rem;
+    border-radius: 14px;
+  }
+
+  .bridge-title {
+    font-size: 1.35rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .bridge-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .bridge-section {
+    margin-bottom: 1rem;
+  }
+
+  .bridge-label {
+    font-size: 0.8rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .amount-input-group {
+    gap: 0.5rem;
+  }
+
+  .bridge-input {
+    padding: 0.85rem;
+    font-size: 0.9rem;
+    border-radius: 10px;
+  }
+
+  .max-button {
+    padding: 0.85rem 1rem;
+    font-size: 0.8rem;
+    border-radius: 10px;
+  }
+
+  .bridge-select {
+    padding: 0.85rem;
+    font-size: 0.9rem;
+    border-radius: 10px;
+  }
+
+  .token-selected-info {
+    padding: 0.65rem 0.85rem;
+    border-radius: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .selected-symbol {
+    font-size: 0.95rem;
+  }
+
+  .selected-balance {
+    font-size: 0.8rem;
+  }
+
+  .fee-display {
+    padding: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .fee-row {
+    font-size: 0.8rem;
+    padding: 0.35rem 0;
+  }
+
+  .fee-row:not(:last-child) {
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.6rem;
+  }
+
+  .bridge-message {
+    padding: 0.85rem;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    border-radius: 10px;
+  }
+
+  .bridge-button {
+    padding: 0.85rem;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+  }
+
+  .history-toggle-button {
+    padding: 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 8px;
+  }
+
+  .bridge-history {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .bridge-history h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .history-list {
+    gap: 0.75rem;
+  }
+
+  .history-item {
+    padding: 0.85rem;
+    border-radius: 8px;
+  }
+
+  .history-header {
+    margin-bottom: 0.6rem;
+  }
+
+  .history-token {
+    font-size: 0.9rem;
+  }
+
+  .history-status {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .history-details {
+    font-size: 0.75rem;
+  }
+
+  .history-details p {
+    margin: 0.25rem 0;
+  }
+
+  .no-history {
+    padding: 1.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+}

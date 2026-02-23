@@ -3,6 +3,7 @@ import { Web3Provider } from './context/Web3Context';
 import { WalletButton } from './components/WalletButton';
 import { SwapCard } from './components/SwapCard';
 import { LiquidityCard } from './components/LiquidityCard';
+import { BridgeCard } from './components/BridgeCard';
 import './App.css';
 
 // Contract addresses - Update these after deploying your contracts
@@ -78,10 +79,7 @@ function AppContent() {
           <SwapCard routerAddress={ROUTER_ADDRESS} factoryAddress={FACTORY_ADDRESS} />
         )}
         {activeTab === 'bridge' && (
-          <div className="feature-placeholder">
-            <h2>Bridge</h2>
-            <p>Bridge tokens across chains coming soon...</p>
-          </div>
+          <BridgeCard />
         )}
         {activeTab === 'invest' && (
           <LiquidityCard routerAddress={ROUTER_ADDRESS} />

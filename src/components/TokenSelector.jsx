@@ -27,8 +27,6 @@ const COMMON_TOKENS = [
 export function TokenSelector({ value, onChange, excludeToken }) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [customAddress, setCustomAddress] = useState('');
-
 
   const filteredTokens = COMMON_TOKENS.filter(
     token =>
@@ -43,10 +41,6 @@ export function TokenSelector({ value, onChange, excludeToken }) {
     setSearchTerm('');
   }, [onChange]);
 
-  const handleBackdropClick = useCallback(() => {
-    setIsOpen(false);
-  }, []);
-
   return (
     <div className="token-selector">
       <button
@@ -58,44 +52,43 @@ export function TokenSelector({ value, onChange, excludeToken }) {
       </button>
 
       {isOpen && (
-        <>
-          <div className="token-backdrop" onClick={handleBackdropClick}></div>
-          <div className="token-dropdown">
-          <input
-            type="text"
-            placeholder="Search by symbol or address..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="token-search"
-            autoFocus
-          />
-          <div className="token-list">
-            {filteredTokens.length > 0 ? (
-              filteredTokens.map((token) => (
-                <button
-                  key={token.address}
-                  className="token-item"
-                  onClick={() => handleSelect(token)}
-                >
-                  <div className="token-info">
-                    <div className="token-header">
-                      <span className="token-symbol">{token.symbol}</span>
+        <div className="token-backdrop" onClick={() => setIsOpen(false)}>
+          <div className="token-dropdown" onClick={(e) => e.stopPropagation()}>
+            <input
+              type="text"
+              placeholder="Search by symbol or address..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="token-search"
+              autoFocus
+            />
+            <div className="token-list">
+              {filteredTokens.length > 0 ? (
+                filteredTokens.map((token) => (
+                  <button
+                    key={token.address}
+                    className="token-item"
+                    onClick={() => handleSelect(token)}
+                  >
+                    <div className="token-info">
+                      <div className="token-header">
+                        <span className="token-symbol">{token.symbol}</span>
+                      </div>
+                      <span className="token-name">{token.name}</span>
                     </div>
-                    <span className="token-name">{token.name}</span>
-                  </div>
-                  <span className="token-address">
-                    {token.address && typeof token.address === 'string'
-                      ? `${token.address.substring(0, 6)}...${token.address.substring(token.address.length - 4)}`
-                      : 'Invalid'}
-                  </span>
-                </button>
-              ))
-            ) : (
-              <div className="no-tokens">No tokens found</div>
-            )}
+                    <span className="token-address">
+                      {token.address && typeof token.address === 'string'
+                        ? `${token.address.substring(0, 6)}...${token.address.substring(token.address.length - 4)}`
+                        : 'Invalid'}
+                    </span>
+                  </button>
+                ))
+              ) : (
+                <div className="no-tokens">No tokens found</div>
+              )}
+            </div>
           </div>
-          </div>
-        </>
+        </div>
       )}
     </div>
   );
