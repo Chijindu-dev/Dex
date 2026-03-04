@@ -1,0 +1,3 @@
+# Vercel Ignore Build Step
+# Prevents Vercel from running its own build if you already built locally
+/dist/

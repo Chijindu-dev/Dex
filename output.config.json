@@ -1,0 +1,4 @@
+// Vercel Output Config for Static Frontend
+{
+  "outputDirectory": "dist"
+}
